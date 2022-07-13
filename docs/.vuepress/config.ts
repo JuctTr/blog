@@ -29,8 +29,7 @@ module.exports = {
               path: '/react/How-do-React-hooks-really-work',
               collapsable: false, // 不折叠
               children: [
-                { title: "React是如何真正工作的", path: "/handbook/How-do-React-hooks-really-work" },
-                // { title: "泛型", path: "/handbook/type" }
+                { title: "React是如何真正工作的", path: "/react/How-do-React-hooks-really-work" },
               ],
             },
             {
@@ -39,7 +38,6 @@ module.exports = {
               collapsable: false, // 不折叠
               children: [
                 { title: "显式类型转换和隐式类型转换", path: "/ecmaScript/type_compare" },
-                // { title: "泛型", path: "/handbook/type" }
               ],
             }
         ],
