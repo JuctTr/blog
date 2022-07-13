@@ -355,15 +355,3 @@ console.log(a, b, c);
 >
 > - [经常被面试官考的JavaScript数据类型知识你真的懂吗？](https://mp.weixin.qq.com/s/_THIZY4KTa1IlVb4k9qbJg )
 > - [MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/valueOf )
-
-
-
-
-
-
-><span style="font-size:12px">
-	文章标题: <a href="{{permalink}}">{{ title }}</a>
-	文章作者: <a href="https://github.com/WangYiCong">王奕聪，QQ:1301842163</a>  
-	许可协议: <img src="https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png" style="display: inline !important;margin:0;padding:0;" alt="知识共享许可协议">
-			  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">©署名-非商用-相同方式共享 4.0</a>
-</span>
