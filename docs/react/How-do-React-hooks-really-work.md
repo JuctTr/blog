@@ -2,6 +2,7 @@
 theme: orange
 highlight: gruvbox-dark
 ---
+# 深入探讨：React Hooks是如何工作的？
 > 作者注：这篇文章仅仅只是对于上下文（context）的一个讨论，此外，本文也没有提及React调度程序或state实际上是如何存储在React中的。
 
 
@@ -11,8 +12,8 @@ highlight: gruvbox-dark
 
 > ⚠️注意：你不需要为了理解`Hooks`，而刻意去做这些工作。如果你完成这个练习，它可能会对你理解JavaScript基础有所帮助。别担心，没那么难！
 
-# 什么是闭包？
-使用`Hooks`最大的卖点之一就是可以完全避免class和高级组件带来的复杂性。然而，对于使用`Hooks`，有一些开发者认为我们可能把一个问题变成了另外的一个问题。现在我们不需要担心（this）绑定上下文，而是担心闭包带来的问题。正如Mark Dalgleish令人难忘的总结：
+## 什么是闭包？
+使用`Hooks`最大的卖点之一就是可以完全避免class和高阶组件带来的复杂性。然而，对于使用`Hooks`，有一些开发者认为我们可能把一个问题变成了另外的一个问题。现在我们不需要担心（this）绑定上下文，而是担心闭包带来的问题。正如Mark Dalgleish令人难忘的总结：
 
 ![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/79e298f7ac9843c3aded9f9d9d3fe646~tplv-k3u1fbpfcp-watermark.image?)
 
@@ -46,7 +47,7 @@ console.log(foo()) // logs 1 - 新的 initialValue, 尽管调用完全相同
 
 如果你想深入了解闭包，我建议你阅读[MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures)、[YDKJS](https://github.com/getify/You-Dont-Know-JS/blob/2nd-ed/scope-closures/ch7.md)和[DailyJS](https://medium.com/dailyjs/i-never-understood-javascript-closures-9663703368e8)，但是如果你理解了上面的代码例子，你就有了所需的一切。
 
-# 在函数组件中使用
+## 在函数组件中使用
 让我们在一个看起来很熟悉的setting中应用我们新创建的useState例子。我们将制作一个计数器组件！
 
 ```js
@@ -67,7 +68,7 @@ C.render() // render: { count: 1 }
 
 虽然以上这些，是可行的（可以正常工作），但是调用一个getter来访问state并不是真正的`React.useState`hook的API（意思就是这种方式不是React.useState这个API真正的设计），让我们来修正它。
 
-# 失效的闭包
+## 失效的闭包
 如果我们想要写出（匹配）真正的React API，我们的state必须是一个变量而不是一个函数。如果我们只是返回_val而不是将其封装在函数里面，就会出现一个bug：
 
 ```js
@@ -87,7 +88,7 @@ console.log(foo) // logs 0 - oops!!
 ```
 这是stale Closure 问题的一种形式。当我们从useState的输出中解构foo时，它会在第一次调用useState时引用_val...并且之后再也不会改变！这显然不是我们想要的；我们通常需要我们的组件状态来反映当前的状态，而这里仅仅只是一个变量而不是一个函数调用，这两个目标似乎截然相反的。
 
-# 模块中的闭包
+## 模块中的闭包
 我们可以通过将我们的闭包移动到另一个闭包来解决useState的难题！*(Yo dawg i heard you like closures...)*
 
 ```js
@@ -129,7 +130,7 @@ App = MyReact.render(Counter) // render: { count: 1 }
 现在看起来更像React with Hooks!
 你可以[阅读更多关于YDKJS中的Module模式和闭包的信息](https://github.com/getify/You-Dont-Know-JS/blob/2nd-ed/scope-closures/ch7.md)。
 
-# 复制useEffect
+## 复制useEffect
 到目前为止，我们已经介绍完useState，它是第一个最基础的React Hook.下一个最重要的hook是useEffect。与setState不同，useEffect是异步执行的，这意味着有更多的机会遇到闭包问题。
 
 我们可以扩展我们在上方已经建立的React小模型，包括以下内容：
@@ -194,7 +195,7 @@ App = MyReact.render(Counter)
 
 为了跟踪依赖项(因为当依赖项改变时useEffect会重新运行)，我们引入了另一个变量来跟踪_deps。
 
-# 不是魔法（黑盒），只是数组
+## 不是魔法（黑盒），只是数组
 我们现在有一个很好的具备useState和useEffect功能的克隆（拷贝）例子，但是它们都是糟糕的单例实现（每一个都只能够存在一个，否则就会发生bugs）。要做任何有意思的事（使得最终的stale closure 示例成为可能），我们需要将它们泛化来获得任意数量的状态和效果（we need to generalize them to take arbitrary numbers of state and effects.）。幸运的是，正如Rudi Yardley所写的那样，React Hooks 不是魔法，仅仅只是数组。我们有一个 hooks 数组。我们将利用这个机会去将所有（状态）_val和deps放到hooks数组中，因为它们不会出现重复的情况：
 
 ```js
@@ -300,7 +301,7 @@ This truly underlies how “not magic” hooks are – Custom Hooks simply fall 
 
 > 不知道这一句怎么翻译才好，水平有限，大概的意思应该就是 hooks并没那么神奇，我们可以通过以上的例子和想法，去构造自己的hooks。
 
-# 推导Hooks规则
+## 推导Hooks规则
 
 注意，从这里你可以轻松地理解hook的第一个规则：[只在最顶层使用hook](https://zh-hans.reactjs.org/docs/hooks-rules.html)。我们已经用currentHook变量显式地模拟了React对调用顺序的依赖。您可以带着我们的实现阅读整个规则的解释，并完全理解正在发生的一切。
 
@@ -309,7 +310,7 @@ This truly underlies how “not magic” hooks are – Custom Hooks simply fall 
 > 这里也不知道怎么翻译好，大概意思就是，只能在React函数中调用hooks，有利于我们明确划分代码的哪些依赖，哪些具有副作用，这是一个比较好的代码实践。
 
 
-# 结论
+## 结论
 在这一点上，我们可能已经尽可能地扩展了这个练习。你可以尝试用一行代码实现useRef（夸张手法？），或者让渲染函数实际获取JSX并挂载到DOM中，或者我们在这个28行React Hooks克隆（例子）中忽略了其他上百万个重要细节。但希望您已经获得了一些在上下文中使用闭包的经验，并获得了一个有用的心智模型，揭开了React Hooks是如何工作的神秘面纱。
 
 我要感谢Dan Abramov和Divya Sasidharan审阅了这篇文章的早期草稿，并通过他们有价值的反馈来改进（修正）它。所有剩余的错误都是我的...
