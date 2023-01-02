@@ -26,6 +26,10 @@ export default defineConfig({
               text: "useContext重渲染问题",
               link: "/react/useContext重渲染问题",
             },
+            {
+              text: "Vue和React的区别",
+              link: "/react/Vue和React的区别",
+            },
           ],
         },
       ],

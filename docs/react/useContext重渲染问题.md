@@ -178,7 +178,7 @@ export default function Nothing() {
 
 一切似乎都可以正常工作，开发组件也没有问题，所以我们不断的往`globalContext.Provider`里面加组件，这个时候你肯定会想，为啥要往`globalContext.Provider`加组件？不是一般用到全局数据的组件才往里面加吗？不然每一次 value 的值更新，就会导致里面所有的组件重新渲染，如下图所示
 
-![Snipaste_2022-08-04_14-04-42](/Users/wangyicong/Desktop/blog/docs/.vuepress/assets/img/Snipaste_2022-08-04_14-04-42.png)
+![Snipaste_2022-08-04_14-04-42](../.vitepress/assets/images/Snipaste_2022-08-04_14-04-42.png)
 
 我们点击改变，组件`Nothing`并没有去读取`globalContext.Provider`提供的 value，也同样重新渲染了，这意味着，只要 value 变化，Provider 里面的子组件都会重新渲染
 
@@ -188,7 +188,7 @@ export default function Nothing() {
 
 确实是这样，但是有没有思考一个问题，我的页面布局依赖组件的编排，要是把无需全局 state 数据的组件移到 Provider 外面，就会影响页面编排，即以下图片所示问题，这个时候我还要考虑，`怎么去拆分不会更改和读取到全局state数据的组件？`
 
-![cabe7816c20649818996136424c0ec75_tplv-k3u1fbpfcp-zoom-1](/Users/wangyicong/Desktop/blog/docs/.vuepress/assets/img/cabe7816c20649818996136424c0ec75_tplv-k3u1fbpfcp-zoom-1.webp)
+![cabe7816c20649818996136424c0ec75_tplv-k3u1fbpfcp-zoom-1](../.vitepress/assets/images/cabe7816c20649818996136424c0ec75_tplv-k3u1fbpfcp-zoom-1.webp)
 
 ## 使用`React.memo`来优化
 
@@ -211,7 +211,7 @@ export default React.memo(NothingMemo);
 
 点击改变，看控制台
 
-![Snipaste_2022-08-04_15-24-20](/Users/wangyicong/Desktop/blog/docs/.vuepress/assets/img/Snipaste_2022-08-04_15-24-20.png)
+![Snipaste_2022-08-04_15-24-20](../.vitepress/assets/images/Snipaste_2022-08-04_15-24-20.png)
 
 我们可以看到，在点击改变按钮时，`NothingMemo`组件就不会重新渲染了
 
@@ -237,7 +237,7 @@ export default React.memo(NothingMemo);
 
 依然会重新渲染，因为 dispatch 函数是塞在 Provider 上的 value 中，value 引用地址改变，当然会重新渲染组件，这是肯定的
 
-![Snipaste_2022-08-04_15-29-00](/Users/wangyicong/Desktop/blog/docs/.vuepress/assets/img/Snipaste_2022-08-04_15-29-00.png)
+![Snipaste_2022-08-04_15-29-00](../.vitepress/assets/images/Snipaste_2022-08-04_15-29-00.png)
 
 ### 比较回调
 
@@ -285,7 +285,7 @@ root.render(<Index />);
 
 我们增加了 memo 的比较函数，函数中代码的意思也就是当 props 中的 skuId 变化了，我们才重新渲染组件，我们来看实际效果，如下：
 
-![Snipaste_2022-08-04_15-40-55](/Users/wangyicong/Desktop/blog/docs/.vuepress/assets/img/Snipaste_2022-08-04_15-40-55.png)
+![Snipaste_2022-08-04_15-40-55](../.vitepress/assets/images/Snipaste_2022-08-04_15-40-55.png)
 
 注意，我们并没有去改变 skuId，但是实际效果，依然重新渲染了，所以这种优化不严谨
 
