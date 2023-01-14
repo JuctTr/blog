@@ -19,9 +19,9 @@ https://zh-hans.reactjs.org/docs/context.html
 
 https://zh-hans.reactjs.org/docs/hooks-reference.html#usecontext
 
-context 的出现就是为了处理多层级组件之间更容易通信的问题，避免数据通过 props 属性一直在组件间自上而下（由父及子）进行传递出现的繁琐场景， 如果你遇到一下场景，那么就适合使用 useContext 结合 useReducer 来处理：
+context 的出现就是为了处理多层级组件之间更容易通信的问题，避免数据通过 props 属性一直在组件间自上而下（由父及子）进行传递出现的繁琐场景， 如果你遇到以下场景，那么就适合使用 useContext 结合 useReducer 来处理：
 
-1. 数据较多，复杂，页面展示依赖状态改变
+1. 页面展示依赖状态数据实时改变
 
    举例：
 
@@ -319,8 +319,12 @@ export default NothingUseMemo;
 
 ## 参考文章
 
-[如何优雅地处理使用 React Context 导致的不必要渲染问题？](https://zhihu.com/question/450047614)
+[如何优雅地处理使用 React Context 导致的不必要渲染问题？](https://zhihu.com/question/450047614)【**必看**】
 
 [Preventing rerenders with React.memo and useContext hook](https://github.com/facebook/react/issues/15156)
 
 [我在工作中写 React，学到了什么？性能优化篇](https://juejin.cn/post/6889247428797530126)
+
+[避免React Context导致的重复渲染](https://zhuanlan.zhihu.com/p/50336226)
+
+[看完 React Context 源码，就知道怎么绕过 Provider 修改它了](https://zhuanlan.zhihu.com/p/492310651)
