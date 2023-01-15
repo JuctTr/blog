@@ -5,11 +5,11 @@ title: 个人博客
 titleTemplate: 学习记录
 
 hero:
-  name: 个人博客
+  name: Blog
   text: 学习记录
-  tagline: 笔记
+  tagline: 记录工作与生活
   image:
-    src: /logo.png
+    src: /images/logo_circle.png
     alt: 个人博客 logo
   actions:
     - theme: brand

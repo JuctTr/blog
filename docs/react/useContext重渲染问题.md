@@ -325,6 +325,6 @@ export default NothingUseMemo;
 
 [我在工作中写 React，学到了什么？性能优化篇](https://juejin.cn/post/6889247428797530126)
 
-[避免React Context导致的重复渲染](https://zhuanlan.zhihu.com/p/50336226)
+[避免 React Context 导致的重复渲染](https://zhuanlan.zhihu.com/p/50336226)
 
 [看完 React Context 源码，就知道怎么绕过 Provider 修改它了](https://zhuanlan.zhihu.com/p/492310651)
