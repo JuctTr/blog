@@ -6,7 +6,7 @@ export default defineConfig({
   base: "/blog/",
   lang: "zh-hans",
   themeConfig: {
-    logo: "../images/logo_circle.png",
+    logo: "/logo_circle.png",
     nav: [
       { text: "指南", link: "/guide/Getting-Started" },
       { text: "React", link: "/react/How-do-React-hooks-really-work" },

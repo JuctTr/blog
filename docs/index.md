@@ -9,7 +9,7 @@ hero:
   text: 学习记录
   tagline: 记录工作与生活
   image:
-    src: /images/logo_circle.png
+    src: /logo_circle.png
     alt: 个人博客 logo
   actions:
     - theme: brand
