@@ -1,7 +1,7 @@
 ---
 layout: home
 
-title: 个人博客
+title: JuctTr的博客
 titleTemplate: 学习记录
 
 hero:
